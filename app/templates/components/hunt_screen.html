@@ -1,0 +1,54 @@
+<div id="game-container">
+<div class="flex flex-col min-h-full">
+    <header class="board-panel p-4 mb-4">
+        <span class="floating-dot floating-dot--1"></span>
+        <div class="flex items-center justify-between gap-3">
+            <button
+                hx-post="/reset"
+                hx-target="#game-container"
+                hx-swap="outerHTML"
+                class="btn-secondary text-sm px-4 py-2 font-semibold active-scale">
+                ← Back
+            </button>
+            <div class="text-center">
+                <p class="text-muted text-sm">Scavenger Hunt</p>
+                <h1 class="font-bold text-3xl text-accent-strong">Soc Ops</h1>
+            </div>
+            <span class="status-chip">{{ session.hunt_progress }}/{{ session.hunt_item_count }}</span>
+        </div>
+        <p class="text-muted text-sm mt-3 px-1">
+            Check off each item as you find someone who matches it. Find all {{ session.hunt_item_count }} people to complete the hunt!
+        </p>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="px-4 mb-6">
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-sm font-semibold text-gray-700">Progress</span>
+            <span class="text-sm font-semibold text-accent-strong">{{ session.hunt_progress }}/{{ session.hunt_item_count }} ({{ session.hunt_progress_percent }}%)</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+            <div 
+                class="bg-accent-strong h-full rounded-full transition-all duration-300"
+                style="width: {{ session.hunt_progress_percent }}%">
+            </div>
+        </div>
+    </div>
+
+    {% if session.is_hunt_complete %}
+    <div class="bg-accent-soft text-accent-strong text-center py-3 font-semibold text-sm rounded-3xl mb-4 border border-[#ffd8c8] shadow-soft">
+        🎉 Hunt Complete! You found everyone!
+    </div>
+    {% endif %}
+
+    <div class="flex-1 flex items-center justify-center p-2">
+        <div class="bg-panel p-4 rounded-4xl shadow-soft border border-white/80 w-full max-w-md">
+            {% include "components/hunt_board.html" %}
+        </div>
+    </div>
+</div>
+
+{% if session.show_hunt_modal %}
+    {% include "components/hunt_completion_modal.html" %}
+{% endif %}
+</div>

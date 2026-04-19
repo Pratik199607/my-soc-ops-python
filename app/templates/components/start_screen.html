@@ -9,10 +9,27 @@
                 </p>
 
                 <div class="landing-actions">
+                    <!-- Mode Toggle -->
+                    <div class="flex items-center justify-center gap-4 mb-4 p-4 bg-surface rounded-2xl border border-gray-200">
+                        <button 
+                            id="mode-bingo-btn"
+                            class="px-4 py-2 rounded-lg font-semibold transition-all duration-200 mode-btn active"
+                            data-mode="bingo">
+                            🎮 Bingo Mode
+                        </button>
+                        <div class="w-0.5 h-6 bg-gray-300"></div>
+                        <button 
+                            id="mode-hunt-btn"
+                            class="px-4 py-2 rounded-lg font-semibold transition-all duration-200 mode-btn"
+                            data-mode="scavenger_hunt">
+                            🔍 Scavenger Hunt
+                        </button>
+                    </div>
+
+                    <input type="hidden" id="selected-mode" value="bingo">
+
                     <button
-                        hx-post="/start"
-                        hx-target="#game-container"
-                        hx-swap="outerHTML"
+                        onclick="startGameWithMode()"
                         class="btn-primary font-semibold py-4 text-lg active-scale">
                         Start Game
                     </button>
@@ -75,3 +92,42 @@
             </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const bingoBtn = document.getElementById('mode-bingo-btn');
+    const huntBtn = document.getElementById('mode-hunt-btn');
+    const modeInput = document.getElementById('selected-mode');
+
+    if (bingoBtn) bingoBtn.addEventListener('click', function() {
+        selectMode('bingo');
+    });
+    
+    if (huntBtn) huntBtn.addEventListener('click', function() {
+        selectMode('scavenger_hunt');
+    });
+});
+
+function selectMode(mode) {
+    document.getElementById('selected-mode').value = mode;
+    
+    const bingoBtn = document.getElementById('mode-bingo-btn');
+    const huntBtn = document.getElementById('mode-hunt-btn');
+    
+    if (mode === 'bingo') {
+        bingoBtn.classList.add('active');
+        huntBtn.classList.remove('active');
+    } else {
+        bingoBtn.classList.remove('active');
+        huntBtn.classList.add('active');
+    }
+}
+
+function startGameWithMode() {
+    const mode = document.getElementById('selected-mode').value;
+    htmx.ajax('POST', `/start?mode=${mode}`, {
+        target: '#game-container',
+        swap: 'outerHTML'
+    });
+}
+</script>

@@ -1,0 +1,23 @@
+<div class="flex flex-col gap-2 w-full">
+    {% for item in session.hunt_items %}
+    <label class="flex items-center gap-3 p-3 rounded-2xl cursor-pointer transition-all duration-150 border
+        {%- if item.is_found %} bg-success-soft border-marked-border
+        {%- else %} bg-surface border-gray-300 hover:bg-gray-50
+        {%- endif %}">
+        <input 
+            type="checkbox" 
+            {% if item.is_found %}checked{% endif %}
+            hx-post="/hunt/collect/{{ item.id }}"
+            hx-target="#game-container"
+            hx-swap="outerHTML"
+            class="w-5 h-5 rounded border-gray-300 text-accent-strong cursor-pointer"
+            aria-label="{{ item.text }}">
+        <span class="flex-1 text-sm {% if item.is_found %}text-green-800 font-semibold{% else %}text-gray-700{% endif %}">
+            {{ item.text }}
+        </span>
+        {% if item.is_found %}
+        <span class="text-green-800 font-semibold">✓</span>
+        {% endif %}
+    </label>
+    {% endfor %}
+</div>
