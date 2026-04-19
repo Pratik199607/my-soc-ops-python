@@ -39,6 +39,14 @@ uv run ruff check .                               # Lint
 - Frontend: Distinctive typography, cohesive themes, animations — avoid generic AI aesthetics
 - State: Server-side via `GameSession`, persisted with signed cookies, HTMX for updates
 
+## Design Guide
+
+- Use the existing utility class system and extend it only when necessary.
+- Prefer bold, playful visual direction for the UI; avoid muted or generic web app styles.
+- Create atmosphere with layered backgrounds, color accents, and motion rather than plain panels.
+- Keep interactions intuitive: buttons should feel tactile, cards should feel inviting, and modals should be celebratory.
+- Preserve the current flow and HTMX endpoints while refreshing visual presentation.
+
 ## Resources
 
 - **Instructions**: `css-utilities.instructions.md`, `frontend-design.instructions.md`, `general.instructions.md`

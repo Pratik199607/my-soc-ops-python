@@ -1,33 +1,36 @@
 <div id="game-container">
-<div class="flex flex-col min-h-full bg-gray-50">
-    <!-- Header -->
-    <header class="flex items-center justify-between p-3 bg-white border-b border-gray-200">
-        <button
-            hx-post="/reset"
-            hx-target="#game-container"
-            hx-swap="outerHTML"
-            class="text-gray-500 text-sm px-3 py-1.5 rounded active:bg-gray-100">
-            ← Back
-        </button>
-        <h1 class="font-bold text-gray-900">Soc Ops</h1>
-        <div class="w-16"></div>
+<div class="flex flex-col min-h-full">
+    <header class="board-panel p-4 mb-4">
+        <span class="floating-dot floating-dot--1"></span>
+        <div class="flex items-center justify-between gap-3">
+            <button
+                hx-post="/reset"
+                hx-target="#game-container"
+                hx-swap="outerHTML"
+                class="btn-secondary text-sm px-4 py-2 font-semibold active-scale">
+                ← Back
+            </button>
+            <div class="text-center">
+                <p class="text-muted text-sm">Social Bingo</p>
+                <h1 class="font-bold text-3xl text-accent-strong">Soc Ops</h1>
+            </div>
+            <span class="status-chip">5x5 board</span>
+        </div>
+        <p class="text-muted text-sm mt-3 px-1">
+            Tap a square when you find someone who matches it. Aim for five connected tiles to score bingo.
+        </p>
     </header>
 
-    <!-- Instructions -->
-    <p class="text-center text-gray-500 text-sm py-2 px-4">
-        Tap a square when you find someone who matches it.
-    </p>
-
-    <!-- Bingo indicator -->
     {% if session.has_bingo %}
-    <div class="bg-amber-100 text-amber-800 text-center py-2 font-semibold text-sm">
-        🎉 BINGO! You got a line!
+    <div class="bg-accent-soft text-accent-strong text-center py-3 font-semibold text-sm rounded-3xl mb-4 border border-[#ffd8c8] shadow-soft">
+        🎉 BINGO! You got a winning line!
     </div>
     {% endif %}
 
-    <!-- Board -->
-    <div class="flex-1 flex items-center justify-center p-3">
-        {% include "components/bingo_board.html" %}
+    <div class="flex-1 flex items-center justify-center p-2">
+        <div class="bg-panel p-4 rounded-4xl shadow-soft border border-white/80 w-full max-w-md">
+            {% include "components/bingo_board.html" %}
+        </div>
     </div>
 </div>
 

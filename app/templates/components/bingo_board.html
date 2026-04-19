@@ -1,4 +1,4 @@
-<div class="grid grid-cols-5 gap-1 w-full max-w-md mx-auto aspect-square">
+<div class="grid grid-cols-5 gap-2 w-full max-w-md mx-auto aspect-square">
     {% for square in session.board %}
     {% set is_winning = square.id in session.winning_square_ids %}
     <button
@@ -8,19 +8,22 @@
         hx-swap="outerHTML"
         {% endif %}
         {% if square.is_free_space %}disabled{% endif %}
-        class="relative flex items-center justify-center p-1 text-center border border-gray-300 rounded transition-all duration-150 select-none min-h-[60px] text-xs leading-tight
+        class="relative flex items-center justify-center p-3 text-center border rounded-2xl transition-all duration-150 select-none min-h-[60px] text-xs leading-tight
         {%- if square.is_marked %}
-            {%- if is_winning %} bg-amber-200 border-amber-400 text-amber-900
-            {%- else %} bg-marked border-marked-border text-green-800
+            {%- if is_winning %} bg-accent-soft border-amber-400 text-accent-strong shadow-soft
+            {%- else %} bg-success-soft border-marked-border text-green-800 shadow-soft
             {%- endif %}
-        {%- else %} bg-white text-gray-700 active:bg-gray-100
+        {%- else %} bg-surface border-gray-300 text-gray-700 hover:bg-gray-50
         {%- endif %}
-        {%- if square.is_free_space %} font-bold text-sm{% endif %}"
+        {%- if square.is_free_space %} font-bold text-sm bg-panel border-amber-100 text-accent-strong shadow-soft{% endif %}"
         aria-pressed="{{ 'true' if square.is_marked else 'false' }}"
         aria-label="{{ 'Free space' if square.is_free_space else square.text }}">
         <span class="wrap-break-word hyphens-auto">{{ square.text }}</span>
         {% if square.is_marked and not square.is_free_space %}
-        <span class="absolute top-0.5 right-0.5 text-green-600 text-xs">✓</span>
+        <span class="absolute top-2 right-2 text-surface tile-badge">✓</span>
+        {% endif %}
+        {% if square.is_free_space %}
+        <span class="absolute bottom-2 left-2 text-accent-strong text-xs font-semibold">FREE</span>
         {% endif %}
     </button>
     {% endfor %}
