@@ -1,40 +1,77 @@
 <div id="game-container">
-<div class="flex flex-col items-center justify-center min-h-full">
-    <div class="max-w-md w-full">
-        <div class="hero-panel p-8 mb-6">
-            <div class="mb-6">
-                <span class="badge">Playful Icebreaker</span>
-                <h1 class="text-5xl font-bold text-accent-strong mb-3">Soc Ops</h1>
-                <p class="text-muted text-lg leading-relaxed">
-                    Find people who match the questions, mark fun squares, and race to five in a row with your friends.
+    <div class="landing-shell anime-shell">
+        <div class="landing-hero">
+            <div class="landing-intro">
+                <span class="landing-eyebrow">BattleGrid Bingo</span>
+                <h1 class="landing-title">Epic social battles await.</h1>
+                <p class="landing-description text-muted">
+                    Spot your allies, mark the grid, and conquer the board. Fast rounds, epic wins, and legendary moments make every game unforgettable.
                 </p>
-            </div>
 
-            <div class="grid gap-3 mb-6">
-                <div class="bg-panel rounded-2xl p-4 border border-white/70">
-                    <h2 class="font-semibold text-gray-900 mb-2">How to play</h2>
-                    <ul class="text-muted text-sm space-y-2">
-                        <li>• Search the room for the perfect social match.</li>
-                        <li>• Tap a square when someone fits the question.</li>
-                        <li>• Get five marked tiles in a line and celebrate bingo.</li>
-                    </ul>
-                </div>
-                <div class="bg-panel rounded-2xl p-4 border border-white/70">
-                    <h2 class="font-semibold text-gray-900 mb-2">Why it’s fun</h2>
-                    <p class="text-muted text-sm">
-                        This is a playful way to learn about new people, spark conversations, and watch the board fill up.
+                <div class="landing-actions">
+                    <button
+                        hx-post="/start"
+                        hx-target="#game-container"
+                        hx-swap="outerHTML"
+                        class="btn-primary font-semibold py-4 text-lg active-scale">
+                        Start Game
+                    </button>
+                    <p class="landing-note text-sm text-muted">
+                        <span class="landing-note-icon">💬</span>
+                        No sign-in needed — just open, play, and get the group talking.
                     </p>
                 </div>
+
+                <div class="landing-pillars grid gap-3">
+                    <div class="landing-pill">
+                        <div class="landing-pill-heading">
+                            <span class="landing-pill-icon">⚡</span>
+                            <strong>Instant battle</strong>
+                        </div>
+                        <span>Launch games in seconds with ready prompts.</span>
+                    </div>
+                    <div class="landing-pill">
+                        <div class="landing-pill-heading">
+                            <span class="landing-pill-icon">🌟</span>
+                            <strong>Epic connections</strong>
+                        </div>
+                        <span>Questions that spark legendary conversations.</span>
+                    </div>
+                    <div class="landing-pill">
+                        <div class="landing-pill-heading">
+                            <span class="landing-pill-icon">🏁</span>
+                            <strong>Grid victory</strong>
+                        </div>
+                        <span>Five in a row claims the ultimate win.</span>
+                    </div>
+                </div>
             </div>
 
-            <button
-                hx-post="/start"
-                hx-target="#game-container"
-                hx-swap="outerHTML"
-                class="w-full btn-primary font-semibold py-4 text-lg active-scale">
-                Start Game
-            </button>
-        </div>
+            <div class="landing-preview">
+                <div class="landing-preview__frame">
+                    <div class="landing-preview__status">• next board</div>
+                    <div class="landing-preview__board preview-grid-2">
+                        <div class="preview-square preview-square--accent">Has a battle scar</div>
+                        <div class="preview-square">Knows a war cry</div>
+                        <div class="preview-square preview-square--marked">Can name 5 heroes</div>
+                        <div class="preview-square">Has a victory pose</div>
+                        <div class="preview-square preview-square--accent">Loves strategy games</div>
+                        <div class="preview-square">Has a lucky charm</div>
+                        <div class="preview-square preview-square--marked">Watched an epic battle</div>
+                        <div class="preview-square">Can quote a commander</div>
+                    </div>
+                </div>
+
+                <div class="landing-features grid gap-3">
+                    <div class="landing-card">
+                        <h2><span class="landing-card-icon">▶</span>How to play</h2>
+                        <p class="text-sm text-muted">Pick a question, find someone in the room who matches it, and tap the square. First to connect five in a row wins the round.</p>
+                    </div>
+                    <div class="landing-card">
+                        <h2><span class="landing-card-icon">💬</span>Why people love it</h2>
+                        <p class="text-sm text-muted">It’s fast-paced, competitive, and turns any gathering into an epic battle of wits and laughs.</p>
+                    </div>
+                </div>
+            </div>
     </div>
-</div>
 </div>
